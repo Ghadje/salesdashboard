@@ -64,35 +64,19 @@ interface DataInterface {
 const dashboards: DataInterface[] = [
   {
     icon: '/images/salesIcon.svg',
-    count: '$1K',
-    title: 'Total Sales',
-    description: '+8% from yesterday',
+    count: '150',
+    title: 'Formes Totales',
+    description: '',
     iconBgColor: '#FA5A7D',
     bgColor: '#FFE2E5',
   },
   {
     icon: '/images/fileIcon.svg',
     count: '300',
-    title: 'Total Order',
-    description: '+5% from yesterday',
+    title: 'Utilisateurs Totaux',
+    description: '',
     iconBgColor: '#FF947A',
     bgColor: '#FFF4DE',
-  },
-  {
-    icon: '/images/tagIcon.svg',
-    count: '5',
-    title: 'Product Sold',
-    description: '+1,2% from yesterday',
-    iconBgColor: '#3CD856',
-    bgColor: '#DCFCE7',
-  },
-  {
-    icon: '/images/userIcon.svg',
-    count: '8',
-    title: 'New Customers',
-    description: '0,5% from yesterday',
-    iconBgColor: '#BF83FF',
-    bgColor: '#F3E8FF',
   },
 ]
 function Dashboard() {
@@ -104,7 +88,7 @@ function Dashboard() {
             <DashboardCardTitle>
               <div className="flex justify-between">
                 <div className="text-xl leading-8 font-semibold text-[#05004E] dark:text-white">
-                  {"Today's Sales"}
+                  {"Today's insights"}
                 </div>
                 <div>
                   <Button variant="outline" className="gap-x-[2.3px]">
@@ -118,7 +102,7 @@ function Dashboard() {
             </DashboardCardTitle>
             <DashboardCardDescription>
               <div className="text-base font-normal leading-[30px] text-[#737791]">
-                Sales Summary
+                Résumé
               </div>
             </DashboardCardDescription>
           </DashboardCardHeader>
@@ -163,7 +147,7 @@ function Dashboard() {
             })}
           </DashboardCardContent>
         </DashboardCard>
-        <DashboardCard className="2xl:w-2/5 w-full 2xl:mt-0 mt-8 ">
+        {/* <DashboardCard className="2xl:w-2/5 w-full 2xl:mt-0 mt-8 ">
           <DashboardCardHeader>
             <DashboardCardTitle>
               <div className="text-xl leading-8 font-semibold text-[#05004E] dark:text-white">
@@ -188,12 +172,12 @@ function Dashboard() {
               </div>
             </div>
           </DashboardCardContent>
-        </DashboardCard>
+        </DashboardCard> */}
       </div>
 
       {/* ------------------------------------------------------ */}
       <div className="grid 2xl:grid-cols-4 lg:grid-cols-2 grid-cols-1 gap-8">
-        <DashboardCard className="w-full lg:col-span-2 col-span-full">
+        {/* <DashboardCard className="w-full lg:col-span-2 col-span-full">
           <DashboardCardHeader>
             <DashboardCardTitle>
               <div className="text-xl leading-8 font-semibold text-[#05004E] dark:text-white">
@@ -214,9 +198,9 @@ function Dashboard() {
               </div>
             </div>
           </DashboardCardContent>
-        </DashboardCard>
+        </DashboardCard> */}
 
-        <DashboardCard className="w-full lg:col-span-1 col-span-full">
+        {/* <DashboardCard className="w-full lg:col-span-1 col-span-full">
           <DashboardCardHeader>
             <DashboardCardTitle>
               <div className="text-xl leading-8 font-semibold text-[#05004E] dark:text-white">
@@ -269,9 +253,9 @@ function Dashboard() {
               </div>
             </div>
           </DashboardCardContent>
-        </DashboardCard>
+        </DashboardCard> */}
 
-        <DashboardCard className="w-full lg:col-span-1 col-span-full">
+        {/* <DashboardCard className="w-full lg:col-span-1 col-span-full">
           <DashboardCardHeader>
             <DashboardCardTitle>
               <div className="text-xl leading-8 font-semibold text-[#05004E] dark:text-white">
@@ -318,10 +302,10 @@ function Dashboard() {
               </div>
             </div>
           </DashboardCardContent>
-        </DashboardCard>
+        </DashboardCard> */}
 
         {/* --------------------------------------------- */}
-        <DashboardCard className="w-full lg:col-span-2 col-span-full">
+        {/* <DashboardCard className="w-full lg:col-span-2 col-span-full">
           <DashboardCardHeader>
             <DashboardCardTitle>
               <div className="text-xl leading-8 font-semibold text-[#05004E] dark:text-white">
@@ -332,9 +316,9 @@ function Dashboard() {
           <DashboardCardContent>
             <TopProducts />
           </DashboardCardContent>
-        </DashboardCard>
+        </DashboardCard> */}
 
-        <DashboardCard className="w-full lg:col-span-1 col-span-full">
+        {/* <DashboardCard className="w-full lg:col-span-1 col-span-full">
           <DashboardCardHeader>
             <DashboardCardTitle>
               <div className="text-xl leading-8 font-semibold text-[#05004E] dark:text-white">
@@ -342,9 +326,9 @@ function Dashboard() {
               </div>
             </DashboardCardTitle>
           </DashboardCardHeader>
-          <DashboardCardContent>
+          <DashboardCardContent> */}
           {/* <MapCountryChart />  */}
-            <div className="flex justify-center items-center h-full">
+            {/* <div className="flex justify-center items-center h-full">
               <Image
                 src="images/countryMap.svg"
                 alt="country"
@@ -352,11 +336,11 @@ function Dashboard() {
                 height={230}
                 className="mt-1"
               />
-            </div>
-          </DashboardCardContent>
-        </DashboardCard>
+            </div> */}
+          {/* </DashboardCardContent>
+        </DashboardCard> */}
 
-        <DashboardCard className="w-full lg:col-span-1 col-span-full">
+        {/* <DashboardCard className="w-full lg:col-span-1 col-span-full">
           <DashboardCardHeader>
             <DashboardCardTitle>
               <div className="text-xl leading-8 font-semibold text-[#05004E] dark:text-white">
@@ -393,7 +377,7 @@ function Dashboard() {
               </div>
             </div>
           </DashboardCardContent>
-        </DashboardCard>
+        </DashboardCard> */}
       </div>
 
     </div>

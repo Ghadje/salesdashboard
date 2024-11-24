@@ -155,12 +155,12 @@ function Header() {
             </div>
             <div className="2xl:block hidden">
               <div className="flex items-center">
-                <SearchInput placeholder="Search here..." />
+                <SearchInput placeholder="Rechercher ici..." />
               </div>
             </div>
             <div className="flex items-center justify-end 2xl:gap-x-[14px] gap-x-2">
               <div className="flex items-center justify-between 2xl:gap-x-[42px] gap-x-2">
-                <div>
+                {/* <div>
                   <DropdownMenu>
                     <DropdownMenuTrigger>
                       <div className="flex 2xl:gap-x-[14px] gap-x-2">
@@ -184,16 +184,16 @@ function Header() {
                       <DropdownMenuItem>Hin</DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
-                </div>
+                </div> */}
                 <div className="flex 2xl:gap-x-[14px] gap-x-2 pl-[10px] items-center justify-center">
-                  <div className="bg-[#FFFAF1] rounded-[8px] h-12 w-12 relative">
+                  {/* <div className="bg-[#FFFAF1] rounded-[8px] h-12 w-12 relative">
                     <div>
                       <div className="absolute right-0 h-2 w-2 rounded-full bg-[#EB5757] m-1"></div>
                     </div>
                     <div className="flex justify-center items-center h-full">
                       <Bell className="text-[#FFA412]" />
                     </div>
-                  </div>
+                  </div> */}
                   <div className="flex 2xl:gap-x-[14px] gap-x-2">
                     <Image
                       src="/images/user.svg"
@@ -207,21 +207,20 @@ function Header() {
                         <DropdownMenu>
                           <DropdownMenuTrigger>
                             <div className="flex 2xl:gap-x-[14px] gap-x-2">
-                              <div className="text-base font-medium">Komal</div>
+                              <div className="text-base font-medium">Karim</div>
                               <ChevronDown />
                             </div>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent>
                             <DropdownMenuLabel>Profile</DropdownMenuLabel>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem>Setting</DropdownMenuItem>
-                            <DropdownMenuItem>Status</DropdownMenuItem>
-                            <DropdownMenuItem>Update Password</DropdownMenuItem>
-                            <DropdownMenuItem className="flex justify-center items-center gap-x-2">
+                            <DropdownMenuItem>Paramètre</DropdownMenuItem>
+                            <DropdownMenuItem>Changer Mot de passe</DropdownMenuItem>
+                            {/* <DropdownMenuItem className="flex justify-center items-center gap-x-2">
                               <ThemeUpdate />
-                            </DropdownMenuItem>
+                            </DropdownMenuItem> */}
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem>Logout</DropdownMenuItem>
+                            <DropdownMenuItem>Déconnexion</DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </div>
@@ -236,7 +235,7 @@ function Header() {
           </div>
           <div className="2xl:hidden block">
             <div className="flex items-center p-[10px] ">
-              <SearchInput placeholder="Search here..." />
+              <SearchInput placeholder="Rechercher ici..." />
             </div>
           </div>
         </nav>

@@ -21,14 +21,14 @@ function SidebarComponent(props: any) {
             className="fixed top-0 left-0 bottom-0 z-40 xl:w-[345px] w-[200px] h-full overflow-y-auto flex flex-col justify-between bg-card"
             aria-label="Sidebar"
           >
-            <div className="flex justify-center items-center w-full py-[40px]">
+            <div className="flex justify-left items-center w-full py-[40px] px-[40px]">
               <Link href="/" className="flex gap-x-[14px] ">
-                <div className="bg-primary flex justify-center items-center p-[15.75px] rounded-[8px]">
-                  <DiamondPercent className="text-activeText h-6 w-6" />
-                </div>
-                <span className="self-center text-3xl leading-[45px] font-semibold sm:text-2xl whitespace-nowrap">
-                  DashFlow
-                </span>
+                <Image
+                  src="/images/irisLogo.svg"
+                  alt="iris-logo"
+                  height={150}
+                  width={150}
+                />
               </Link>
             </div>
             <div className="h-full 2xl:px-[46px] px-[23px] lg:pb-4 pb-2 bg-card flex flex-col justify-between">
@@ -59,28 +59,7 @@ function SidebarComponent(props: any) {
                 })}
               </ul>
             </div>
-            <div className="flex justify-center items-center bg-card">
-              <div
-                className="bg-primary bg-cover bg-center 2xl:w-[238px] w-[180px] h-[261px] my-10 flex flex-col justify-center items-center px-[30px] py-[46px] text-center rounded-[20px] text-white"
-                // style={{ backgroundImage: "url('images/proBackground.svg')" }}
-              >
-                <div className="bg-primary flex justify-center items-center p-[15.75px] rounded-[8px] shadow-2xl border border-activeText">
-                  <DiamondPercent className="text-activeText h-6 w-6" />
-                </div>
-                <div className="mt-2 text-xl leading-[32px] font-semibold text-activeText">
-                  DashFlow Pro
-                </div>
-                <div className="mt2 text-xs leading-4 font-medium  text-activeText">
-                  Get access to all features on tetumbas
-                </div>
-                <Button
-                  className="text-text mt-8 text-base font-semibold leading-6"
-                  variant={'secondary'}
-                >
-                  Get Pro
-                </Button>
-              </div>
-            </div>
+            
           </aside>
 
           {/* Header Section */}

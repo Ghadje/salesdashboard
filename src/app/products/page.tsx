@@ -36,7 +36,7 @@ function Products() {
           <CardTitle>
             <div className="flex justify-between items-center gap-x-2">
               <div className="w-1/3">
-                <Input placeholder="Search here...." />
+                <Input placeholder="Rechercher ici..." />
               </div>
               <div className="flex gap-x-2">
                 <AddEditProduct />

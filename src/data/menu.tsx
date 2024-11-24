@@ -1,4 +1,4 @@
-import { BarChart2, LayoutDashboard, LineChart, LogOut, MessageSquareMore, Settings, ShoppingBag, ShoppingCart } from "lucide-react"
+import { BarChart2, LayoutDashboard, LogOut, Settings, ShoppingCart, Users } from "lucide-react"
 
 interface MenuInterface {
   title: string
@@ -10,7 +10,7 @@ interface MenuInterface {
 
 export const menu: MenuInterface[] = [
   {
-    title: 'Dashboard',
+    title: 'Tableu de bord',
     pathname: 'dashboard',
     url: '/dashboard',
     icon: LayoutDashboard
@@ -18,7 +18,7 @@ export const menu: MenuInterface[] = [
     // inactiveIcon: 'images/sidebar/dashboardInactive.svg',
   },
   {
-    title: 'Leaderboard',
+    title: 'List de forms',
     pathname: 'leaderboard',
     url: '/leaderboard',
     icon: BarChart2
@@ -26,39 +26,39 @@ export const menu: MenuInterface[] = [
     // inactiveIcon: 'images/sidebar/barInactive.svg',
   },
   {
-    title: 'Order',
+    title: 'List d\'utilisateur',
     pathname: 'order',
     url: '/order',
-    icon: ShoppingCart
+    icon: Users
     // icon: 'images/sidebar/order.svg',
     // inactiveIcon: 'images/sidebar/orderInactive.svg',
   },
-  {
-    title: 'Products',
-    pathname: 'products',
-    url: '/products',
-    icon: ShoppingBag
+  // {
+  //   title: 'Products',
+  //   pathname: 'products',
+  //   url: '/products',
+  //   icon: ShoppingBag
     // icon: 'images/sidebar/products.svg',
     // inactiveIcon: 'images/sidebar/productsInactive.svg',
-  },
-  {
-    title: 'Sales Report',
-    pathname: 'sales-report',
-    url: '/sales-report',
-    icon: LineChart
+  // },
+  // {
+  //   title: 'Sales Report',
+  //   pathname: 'sales-report',
+  //   url: '/sales-report',
+  //   icon: LineChart
     // icon: 'images/sidebar/salesReport.svg',
     // inactiveIcon: 'images/sidebar/salesReportInactive.svg',
-  },
-  {
-    title: 'Messages',
-    pathname: 'messages',
-    url: '/messages',
-    icon: MessageSquareMore
+  // },
+  // {
+  //   title: 'Messages',
+  //   pathname: 'messages',
+  //   url: '/messages',
+  //   icon: MessageSquareMore
     // icon: 'images/sidebar/message.svg',
     // inactiveIcon: 'images/sidebar/messageInactive.svg',
-  },
+  // },
   {
-    title: 'Settings',
+    title: 'Paramètres',
     pathname: 'settings',
     url: '/settings',
     icon: Settings
@@ -66,7 +66,7 @@ export const menu: MenuInterface[] = [
     // inactiveIcon: 'images/sidebar/settingsInactive.svg',
   },
   {
-    title: 'Sign Out',
+    title: 'Se déconnecter',
     pathname: 'sign-out',
     url: '/sign-out',
     icon: LogOut
