@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { Button } from '@/components/ui/button'
 import {
@@ -22,6 +22,9 @@ import {
 import { Separator } from '@/components/ui/separator'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
+import { useAuth } from '@/lib/authContext'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 const LineChartComponent = dynamic(
   () => import('@/components/dashboard/lineChartComponent'),
@@ -80,6 +83,19 @@ const dashboards: DataInterface[] = [
   },
 ]
 function Dashboard() {
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push('/login');
+    }
+  }, [isAuthenticated, router]);
+
+  if (!isAuthenticated) {
+    return <p>Loading...</p>; // Show a loader while redirecting
+  }
+  
   return (
     <div className="flex flex-col gap-8">
       <div className="2xl:flex flex-none gap-8 w-full">
