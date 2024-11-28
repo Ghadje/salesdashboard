@@ -1,3 +1,5 @@
+'use client'
+
 import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   DropdownMenu,
@@ -26,6 +28,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
+import { withAuth } from '@/lib/withAuth'
 
 function Order() {
   return (
@@ -109,4 +112,4 @@ function Order() {
   )
 }
 
-export default Order
+export default withAuth(Order);

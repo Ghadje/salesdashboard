@@ -1,3 +1,5 @@
+'use client'
+
 import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   DropdownMenu,
@@ -27,6 +29,7 @@ import {
 } from '@/components/ui/pagination'
 import Image from 'next/image'
 import AddEditProduct from "./addEditProduct";
+import { withAuth } from '@/lib/withAuth'
 
 function Products() {
   return (
@@ -110,4 +113,4 @@ function Products() {
   )
 }
 
-export default Products
+export default withAuth(Products);

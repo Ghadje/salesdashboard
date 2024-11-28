@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
@@ -16,42 +16,37 @@ const AuthContext = createContext<AuthContextType>({
   login: () => {},
   logout: () => {},
   isAuthenticated: false,
-  loading: true, // Default to `true` as we're initially checking for the token
+  loading: true, // Initially loading
 });
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [token, setToken] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true); // Start in a loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const storedToken = Cookies.get('token');
-    console.log("🚀 Checking for stored token:", storedToken);
-
     if (storedToken) {
       setToken(storedToken);
     }
-
-    setLoading(false); // Mark loading as complete
+    setLoading(false); // Finish loading once the token is checked
   }, []);
 
   const login = (token: string) => {
-    console.log("🚀 Logging in with token:", token);
-    Cookies.set('token', token, { expires: 7 }); // Save token for 7 days
+    Cookies.set('token', token, { expires: 7 });
     setToken(token);
   };
 
   const logout = () => {
-    console.log("🚀 Logging out...");
     Cookies.remove('token');
     setToken(null);
-    window.location.href = '/'; // Redirect to home or login page
+    window.location.href = '/';
   };
 
   const isAuthenticated = !!token;
 
   return (
     <AuthContext.Provider value={{ token, login, logout, isAuthenticated, loading }}>
-      {loading ? <p>Loading...</p> : children}
+      {loading ? null : children}
     </AuthContext.Provider>
   );
 };

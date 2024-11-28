@@ -25,6 +25,7 @@ import dynamic from 'next/dynamic'
 import { useAuth } from '@/lib/authContext'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { withAuth } from '@/lib/withAuth'
 
 const LineChartComponent = dynamic(
   () => import('@/components/dashboard/lineChartComponent'),
@@ -387,4 +388,4 @@ function Home() {
   )
 }
 
-export default Home
+export default withAuth(Home);
