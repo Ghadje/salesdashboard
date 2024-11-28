@@ -1,27 +1,24 @@
-'use client'
+'use client';
 
-import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { menu } from '@/data/menu'
-import Header from './header'
-import { useAuth } from '@/lib/authContext'
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+import { menu } from '@/data/menu';
+import Header from './header';
+import { useAuth } from '@/lib/authContext';
+import { LogOut } from 'lucide-react';
 
 const SidebarComponent = (props: any) => {
-  const pathname = usePathname().split('/')[1]
-  const { logout } = useAuth() // Access the logout function from the context
+  const pathname = usePathname().split('/')[1];
+  const router = useRouter();
+  const { logout } = useAuth();
 
-  const handleItemClick = (e: React.MouseEvent, pathname: string) => {
-    e.preventDefault()
-    console.log(`Clicked on: ${pathname}`); // Log the clicked pathname
-    if (pathname === 'logout') {
-      console.log('Logging out...'); // Log when the logout function is called
-      logout()
-    } else {
-      window.location.href = `/${pathname}`
-    }
-  }
+  const handleLogout = async () => {
+    console.log('Logging out...');
+    await logout(); // Ensure the logout function handles user session properly
+    router.push('/'); // Redirect to the login or home page after logout
+  };
 
   return (
     <div>
@@ -45,33 +42,45 @@ const SidebarComponent = (props: any) => {
               </Link>
             </div>
             <div className="h-full 2xl:px-[46px] px-[23px] lg:pb-4 pb-2 bg-card flex flex-col justify-between">
-              <ul className="space-y-2 font-medium">
+              <ul className="space-y-2 grown font-medium">
                 {menu?.map((o) => {
                   return (
                     <li key={o.title}>
-                      <a
+                      <Link
                         href={o.url}
                         className={`flex items-center 2xl:px-6 lg:px-3 px-1 2xl:py-4 lg:py-2 py-1
-                          group ${pathname === o.pathname
-                            ? 'text-activeText rounded-lg bg-primary dark:hover:bg-gray-700'
-                            : 'text-text rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700'
+                          group ${
+                            pathname === o.pathname
+                              ? 'text-activeText rounded-lg bg-primary dark:hover:bg-gray-700'
+                              : 'text-text rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700'
                           }`}
-                        onClick={(e) => handleItemClick(e, o.pathname)}
                       >
                         <o.icon
-                          className={`${pathname === o.pathname
+                          className={`${
+                            pathname === o.pathname
                               ? 'text-activeText'
                               : 'text-text'
-                            }, mr-2 h-4 w-4`}
+                          }, mr-2 h-4 w-4`}
                         />
                         <span className="2xl:ms-3 lg:ms-2 ms-1 capitalize xl:text-lg lg:text-base text-sm leading-[27px]">
                           {o.title}
                         </span>
-                      </a>
+                      </Link>
                     </li>
-                  )
+                  );
                 })}
               </ul>
+              <div className="space-y-2 font-medium">
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center 2xl:px-6 lg:px-3 px-1 2xl:py-4 lg:py-2 py-1 group text-text rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  <LogOut className="text-text mr-2 h-4 w-4" />
+                  <span className="2xl:ms-3 lg:ms-2 ms-1 capitalize xl:text-lg lg:text-base text-sm leading-[27px]">
+                    Se déconnecter
+                  </span>
+                </button>
+              </div>
             </div>
           </aside>
 
@@ -91,7 +100,7 @@ const SidebarComponent = (props: any) => {
         {props.pages}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SidebarComponent
+export default SidebarComponent;
