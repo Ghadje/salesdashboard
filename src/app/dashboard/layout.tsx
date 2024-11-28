@@ -1,7 +1,6 @@
 'use client'
 
 import { Poppins } from 'next/font/google'
-import './globals.css'
 import Sidebar from '@/components/sidebar'
 import { cn } from '@/lib/utils'
 import { useEffect } from 'react'
@@ -33,15 +32,15 @@ export default function RootLayout({
   }, [])
 
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="light"
-      enableSystem
-      disableTransitionOnChange
-    >
-      <ThemeDataProvider >
-        <Sidebar pages={children} />
-      </ThemeDataProvider>
-    </ThemeProvider>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="light"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <ThemeDataProvider >
+          <Sidebar pages={children} />
+        </ThemeDataProvider>
+      </ThemeProvider>
   )
 }

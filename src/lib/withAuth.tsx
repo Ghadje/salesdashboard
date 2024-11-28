@@ -11,16 +11,16 @@ export const withAuth = (Component: React.FC) => {
 
     React.useEffect(() => {
       if (!loading && !isAuthenticated) {
-        router.push('/'); // Redirect to login if not authenticated
+        router.push('/');
       }
     }, [loading, isAuthenticated, router]);
 
     if (loading) {
-      return <div>Loading...</div>; // Show a loading spinner while checking auth
+      return <div>Loading...</div>; 
     }
 
     if (!isAuthenticated) {
-      return null; // Prevent rendering if the user is not authenticated
+      return null; 
     }
 
     return <Component {...props} />;

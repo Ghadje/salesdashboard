@@ -4,6 +4,7 @@ import '@/app/dashboard/globals.css';
 import { Poppins } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import { AuthProvider } from '@/lib/authContext';
+import '@/app/dashboard/globals.css'
 
 const poppins = Poppins({
   subsets: ['latin'],
