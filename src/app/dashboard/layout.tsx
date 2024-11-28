@@ -33,24 +33,15 @@ export default function RootLayout({
   }, [])
 
   return (
-    <html lang="en">
-    <body
-    className={cn(
-      `h-full bg-background font-sans antialiased`,
-      poppins.variable,
-    )}
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="light"
+      enableSystem
+      disableTransitionOnChange
     >
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="light"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <ThemeDataProvider >
-          <Sidebar pages={children} />
-        </ThemeDataProvider>
-      </ThemeProvider>
-    </body>
-  </html>
+      <ThemeDataProvider >
+        <Sidebar pages={children} />
+      </ThemeDataProvider>
+    </ThemeProvider>
   )
 }

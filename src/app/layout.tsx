@@ -1,6 +1,6 @@
 'use client';
 
-import './main/globals.css';
+import '@/app/dashboard/globals.css';
 import { Poppins } from 'next/font/google';
 import { cn } from '@/lib/utils';
 

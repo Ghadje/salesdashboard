@@ -10,7 +10,6 @@ export const login = async (credenticals: LoginCredentials) => {
     try{
         const response = await api.post('api/user/login', credenticals);
         const { token } = response.data;
-
         Cookies.set('token', token, {expires: 7});
         return token;
     }catch (error: any){

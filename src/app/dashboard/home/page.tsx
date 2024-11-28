@@ -82,20 +82,7 @@ const dashboards: DataInterface[] = [
     bgColor: '#FFF4DE',
   },
 ]
-function Dashboard() {
-  const { isAuthenticated } = useAuth();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.push('/login');
-    }
-  }, [isAuthenticated, router]);
-
-  if (!isAuthenticated) {
-    return <p>Loading...</p>; // Show a loader while redirecting
-  }
-  
+function Home() {
   return (
     <div className="flex flex-col gap-8">
       <div className="2xl:flex flex-none gap-8 w-full">
@@ -400,4 +387,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default Home

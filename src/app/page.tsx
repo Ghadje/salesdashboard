@@ -1,14 +1,10 @@
-
-import { AppProps } from 'next/app';
-import Dashboard from './main/dashboard/page';
 import { AuthProvider } from '@/lib/authContext';
+import Home from './home/page';
 
-const Home = ({ Component, pageProps }: AppProps) => {
+export default function Page() {
   return (
     <AuthProvider>
-      <Dashboard {...pageProps} />
+      <Home/>
     </AuthProvider>
   );
-};
-
-export default Home;
+}

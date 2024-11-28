@@ -4,6 +4,14 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../../lib/authContext';
 import { login, LoginCredentials } from '../../lib/auth';
+import IrisLogo from '@/app/ui/iris-logo';
+import {
+  AtSymbolIcon,
+  KeyIcon,
+  ExclamationCircleIcon,
+  ArrowRightIcon,
+} from '@heroicons/react/24/outline';
+import { Button } from '@/app/dashboard/button';
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState<LoginCredentials>({ email: '', password: '' });
@@ -25,7 +33,7 @@ const LoginPage = () => {
     try {
       const token = await login(credentials);
       saveToken(token);
-      router.push('/main/dashboard'); // Redirect to the dashboard after login
+      router.push('/dashboard/home'); // Redirect to the dashboard after login
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -34,10 +42,15 @@ const LoginPage = () => {
   };
 
   return (
-      <div>
-        <h1 style={{ fontSize: '24px', marginBottom: '20px', color: '#333' }}>Login</h1>
-        <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: '15px' }}>
+      <main className="flex items-center justify-center md:h-screen">
+        <div className="relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:-mt-32">
+        <div className="flex h-20 w-full items-end rounded-lg bg-orange-500 p-3 md:h-36">
+          <div className="w-32 text-white md:w-36">
+            <IrisLogo />
+          </div>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <div>
             <label
               style={{
                 display: 'block',
@@ -49,22 +62,19 @@ const LoginPage = () => {
             >
               Email:
             </label>
+            <div className="relative">
             <input
+             className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
               type="email"
               name="email"
               value={credentials.email}
               onChange={handleChange}
               required
-              style={{
-                width: '100%',
-                padding: '12px 15px',
-                fontSize: '14px',
-                borderRadius: '6px',
-                border: '1px solid #ccc',
-              }}
             />
+             <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+            </div>
           </div>
-          <div style={{ marginBottom: '20px' }}>
+          <div className="mt-4">
             <label
               style={{
                 display: 'block',
@@ -76,41 +86,25 @@ const LoginPage = () => {
             >
               Password:
             </label>
+            <div className="relative">
             <input
+              className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
               type="password"
               name="password"
               value={credentials.password}
               onChange={handleChange}
               required
-              style={{
-                width: '100%',
-                padding: '12px 15px',
-                fontSize: '14px',
-                borderRadius: '6px',
-                border: '1px solid #ccc',
-              }}
             />
+            <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+            </div>
           </div>
+          <Button disabled={loading} className="mt-4 w-full">
+            {loading ? 'Logging in...' : 'Se connecter'}<ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+          </Button>
           {error && <p style={{ color: 'red', marginBottom: '15px' }}>{error}</p>}
-          <button
-            type="submit"
-            disabled={loading}
-            style={{
-              width: '100%',
-              padding: '12px',
-              fontSize: '16px',
-              backgroundColor: '#FF7F50',
-              color: '#fff',
-              border: 'none',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              opacity: loading ? 0.7 : 1,
-            }}
-          >
-            {loading ? 'Logging in...' : 'Login'}
-          </button>
         </form>
-      </div>
+        </div>
+      </main>
   );
 };
 

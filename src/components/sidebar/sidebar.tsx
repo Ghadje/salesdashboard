@@ -1,15 +1,28 @@
 'use client'
 
+import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Button } from '../ui/button'
-import Header from './header'
 import { menu } from '@/data/menu'
-import { DiamondPercent } from 'lucide-react'
+import Header from './header'
+import { useAuth } from '@/lib/authContext'
 
-function SidebarComponent(props: any) {
+const SidebarComponent = (props: any) => {
   const pathname = usePathname().split('/')[1]
+  const { logout } = useAuth() // Access the logout function from the context
+
+  const handleItemClick = (e: React.MouseEvent, pathname: string) => {
+    e.preventDefault()
+    console.log(`Clicked on: ${pathname}`); // Log the clicked pathname
+    if (pathname === 'logout') {
+      console.log('Logging out...'); // Log when the logout function is called
+      logout()
+    } else {
+      window.location.href = `/${pathname}`
+    }
+  }
+
   return (
     <div>
       {/* Desktop View */}
@@ -36,13 +49,14 @@ function SidebarComponent(props: any) {
                 {menu?.map((o) => {
                   return (
                     <li key={o.title}>
-                      <Link
+                      <a
                         href={o.url}
                         className={`flex items-center 2xl:px-6 lg:px-3 px-1 2xl:py-4 lg:py-2 py-1
                           group ${pathname === o.pathname
                             ? 'text-activeText rounded-lg bg-primary dark:hover:bg-gray-700'
                             : 'text-text rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700'
                           }`}
+                        onClick={(e) => handleItemClick(e, o.pathname)}
                       >
                         <o.icon
                           className={`${pathname === o.pathname
@@ -53,13 +67,12 @@ function SidebarComponent(props: any) {
                         <span className="2xl:ms-3 lg:ms-2 ms-1 capitalize xl:text-lg lg:text-base text-sm leading-[27px]">
                           {o.title}
                         </span>
-                      </Link>
+                      </a>
                     </li>
                   )
                 })}
               </ul>
             </div>
-            
           </aside>
 
           {/* Header Section */}

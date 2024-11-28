@@ -67,8 +67,8 @@ export const menu: MenuInterface[] = [
   },
   {
     title: 'Se déconnecter',
-    pathname: 'sign-out',
-    url: '/sign-out',
+    pathname: 'logout',
+    url: '#',
     icon: LogOut
     // icon: 'images/sidebar/logout.svg',
     // inactiveIcon: 'images/sidebar/logoutInactive.svg',
