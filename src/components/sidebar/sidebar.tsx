@@ -11,7 +11,6 @@ import { LogOut } from 'lucide-react';
 
 const SidebarComponent = (props: any) => {
   const pathname = usePathname().split('/')[2];
-  console.log("🚀 ~ SidebarComponent ~ pathname:", pathname)
   const router = useRouter();
   const { logout } = useAuth();
 
