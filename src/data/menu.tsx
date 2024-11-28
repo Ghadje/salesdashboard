@@ -11,16 +11,16 @@ interface MenuInterface {
 export const menu: MenuInterface[] = [
   {
     title: 'Tableu de bord',
-    pathname: 'dashboard',
-    url: '/dashboard',
+    pathname: 'home',
+    url: '/dashboard/home',
     icon: LayoutDashboard
     // icon: 'images/sidebar/dashboard.svg',
     // inactiveIcon: 'images/sidebar/dashboardInactive.svg',
   },
   {
-    title: 'List de forms',
-    pathname: 'leaderboard',
-    url: '/leaderboard',
+    title: 'List Des POS',
+    pathname: 'pos',
+    url: '/dashboard/pos',
     icon: BarChart2
     // icon: 'images/sidebar/bar.svg',
     // inactiveIcon: 'images/sidebar/barInactive.svg',
