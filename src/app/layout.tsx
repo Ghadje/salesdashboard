@@ -3,6 +3,7 @@
 import '@/app/dashboard/globals.css';
 import { Poppins } from 'next/font/google';
 import { cn } from '@/lib/utils';
+import { AuthProvider } from '@/lib/authContext';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -17,9 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn('bg-gray-50', poppins.variable)}>
-        {children}
-      </body>
+      <AuthProvider>
+        <body className={cn('bg-gray-50', poppins.variable)}>
+          {children}
+        </body>
+      </AuthProvider>
     </html>
   );
 }
