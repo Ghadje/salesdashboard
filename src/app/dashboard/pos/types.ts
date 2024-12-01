@@ -1,4 +1,4 @@
-interface Pos {
+export interface PosData {
     id: string;
     first_name: string;
     last_name: string;
@@ -21,7 +21,7 @@ interface Pos {
     wharehouse_surface: string;
     cars_cout: number;
     it_tools: number;
-    photo_url: string | null;
+    photo_url: string;
     activity_type: string;
     product_family: string;
     sell_type: string;
@@ -36,12 +36,9 @@ interface Pos {
     ca_iris_monthly: string;
     comments: string;
     classification: string;
-    createdAt: string;
+    createdAt: string; 
     updatedAt: string;
     userId: string;
   }
   
-  interface ApiResponse {
-    response: Pos[];
-  }
   
