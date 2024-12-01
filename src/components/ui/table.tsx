@@ -1,6 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { useRouter } from "next/navigation"
 
 const Table = React.forwardRef<
   HTMLTableElement,
@@ -53,18 +54,30 @@ TableFooter.displayName = "TableFooter"
 
 const TableRow = React.forwardRef<
   HTMLTableRowElement,
-  React.HTMLAttributes<HTMLTableRowElement>
->(({ className, ...props }, ref) => (
-  <tr
-    ref={ref}
-    className={cn(
-      "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
-      className
-    )}
-    {...props}
-  />
-))
-TableRow.displayName = "TableRow"
+  React.HTMLAttributes<HTMLTableRowElement> & { id?: string }
+>(({ className, id, ...props }, ref) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (id) {
+      router.push(`/dashboard/pos/${id}`); // Navigate to details page
+    }
+  };
+
+  return (
+    <tr
+      ref={ref}
+      onClick={handleClick}
+      className={cn(
+        "cursor-pointer border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+        className
+      )}
+      {...props}
+    />
+  );
+});
+
+TableRow.displayName = "TableRow";
 
 const TableHead = React.forwardRef<
   HTMLTableCellElement,
