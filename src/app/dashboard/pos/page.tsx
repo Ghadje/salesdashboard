@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import Cookies from 'js-cookie';
 
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
@@ -24,11 +23,56 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination';
 import { withAuth } from '@/lib/withAuth';
+import { api } from '@/lib/api';
 
-const API_URL = 'http://10.119.26.100:3006/api/forms';
+interface FormData {
+  id: string;
+  first_name: string;
+  last_name: string;
+  phone_1: string;
+  phone_2: string;
+  contact_name: string;
+  contact_phone_1: string;
+  contact_phone_2: string;
+  email: string;
+  latitude: number;
+  longitude: number;
+  wilaya: string;
+  commune: string;
+  surface: string;
+  local_cout: number;
+  employees_cout: number;
+  road_is_comercial: number;
+  location_or_owner: string;
+  has_wharehouse: number;
+  wharehouse_surface: string;
+  cars_cout: number;
+  it_tools: number;
+  photo_url: string;
+  activity_type: string;
+  product_family: string;
+  sell_type: string;
+  ca_global_monthly: string;
+  main_suplier: string;
+  comm_brands: string;
+  main_brands: string;
+  has_iris_brand: number;
+  has_iris_cause: string;
+  iris_ready: number;
+  iris_family: string;
+  ca_iris_monthly: string;
+  comments: string;
+  classification: string;
+  createdAt: string; 
+  updatedAt: string;
+  userId: string;
+}
 
-function Order() {
-  const [data, setData] = useState<any[]>([]);
+
+
+
+function Page() {
+  const [formData, setFormData] = useState<Array<FormData>>([]);
   const [loading, setLoading] = useState<boolean>(false); 
   const [error, setError] = useState<string | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(1);
@@ -41,23 +85,16 @@ function Order() {
     setError(null);
 
     try {
-      const token = Cookies.get('token'); // Get the token from cookies
-      const response = await axios.post(
-        API_URL,
+      const response = await api.post(
+        "api/forms",
         {
-          filter: {}, // Adjust the filter if needed
+          filter: {},
           pageNumber,
           pageSize,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Add the Authorization header
-          },
-        }
       );
-      console.log("🚀 ~ fetchData ~ response:", response.data.response);
       setTotal(response?.data?.total || 0);
-      setData(response.data.response || []); // Assuming `forms` contains the data
+      setFormData(response.data.response || []); 
     } catch (err: any) {
       setError(err.response?.data?.message || 'Failed to fetch data');
     } finally {
@@ -68,6 +105,7 @@ function Order() {
   // Trigger data fetch on page load and when `pageNumber` changes
   useEffect(() => {
     fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNumber]);
 
   return (
@@ -86,9 +124,13 @@ function Order() {
           <TableHeader>
             <TableRow>
               <TableHead>No</TableHead>
-              <TableHead>Form Name</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Owner</TableHead>
+              <TableHead>Nom de Pos</TableHead>
+              <TableHead>Téléphone</TableHead>
+              <TableHead>Wilaya</TableHead>
+              <TableHead>Commune</TableHead>
+              <TableHead>Superficie</TableHead>
+              <TableHead>Locataire/Propriétaire</TableHead>
+              <TableHead>Créé à</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -102,24 +144,29 @@ function Order() {
                   {error}
                 </TableCell>
               </TableRow>
-            ) : data.length > 0 ? (
-              data.map((form, index) => (
-                <TableRow key={form.id}>
+            ) : formData.length > 0 ? (
+              formData.map((data, index) => (
+                <TableRow key={data.id}>
                   <TableCell>{(pageNumber - 1) * pageSize + index + 1}</TableCell>
-                  <TableCell>{form.name}</TableCell>
-                  <TableCell>{form.status}</TableCell>
-                  <TableCell>{form.owner}</TableCell>
+                  <TableCell>{data?.first_name} {data?.last_name}</TableCell>
+                  <TableCell>{data?.phone_1}</TableCell>
+                  <TableCell>{data?.wilaya}</TableCell>
+                  <TableCell>{data?.commune}</TableCell>
+                  <TableCell>{data?.surface}</TableCell>
+                  <TableCell>{data?.location_or_owner ? "Locataire" : "Propriétaire"}</TableCell>
+                  <TableCell>{data?.createdAt}</TableCell>
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={4}>No forms found</TableCell>
+                <TableCell colSpan={9}>No forms found</TableCell>
               </TableRow>
             )}
           </TableBody>
         </Table>
-        <Pagination className="flex justify-end mt-4">
+        <Pagination className="flex justify-end my-4">
           <PaginationContent>
+             {/* Previous Button */}
             <PaginationItem>
               <PaginationPrevious
                 href="#"
@@ -127,17 +174,26 @@ function Order() {
                 disabled={pageNumber === 1}
               />
             </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#" onClick={() => setPageNumber(1)}>
-                1
-              </PaginationLink>
-              <PaginationLink href="#" onClick={() => setPageNumber(2)}>
-                2
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" onClick={() => setPageNumber(pageNumber + 1)} />
-            </PaginationItem>
+             {/* Page Numbers */}
+             {Array.from({ length: Math.ceil(total / pageSize) }, (_, index) => index + 1).map((page) => (
+                <PaginationItem key={page}>
+                  <PaginationLink
+                    href="#"
+                    className={page === pageNumber ? "font-bold text-black" : ""}
+                    onClick={() => setPageNumber(page)}
+                  >
+                    {page}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+              {/* Next Button */}
+              <PaginationItem>
+                <PaginationNext
+                  href="#"
+                  onClick={() => pageNumber < Math.ceil(total / pageSize) && setPageNumber(pageNumber + 1)}
+                  disabled={pageNumber >= Math.ceil(total / pageSize)}
+                />
+              </PaginationItem>
           </PaginationContent>
         </Pagination>
       </Card>
@@ -145,4 +201,4 @@ function Order() {
   );
 }
 
-export default withAuth(Order);
+export default withAuth(Page);
