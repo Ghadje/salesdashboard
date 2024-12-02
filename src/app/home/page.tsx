@@ -26,7 +26,7 @@ function Home() {
     return <p>Loading...</p>;
   }
 
-  if(!loading && !isAuthenticated){
+  if(!loading && !isAuthenticated){ // todo
     return (
         <main className="flex min-h-screen flex-col p-6">
             <div className="flex h-20 shrink-0 items-end rounded-lg bg-orange-500 p-4 md:h-52">
@@ -39,7 +39,7 @@ function Home() {
                   <a href="https://iris.dz/" className="text-orange-500">
                   Iris
                   </a>
-                  , pour les comercials.
+                  , pour les achats.
                 </p>
                 <Button
                   onClick={()=> router.push('/login')}
